@@ -1,0 +1,40 @@
+.container-fluid{
+  margin-top: 20px;
+  .list-group{
+    display: block;
+  }
+
+          .swap-button{
+            margin-top: 26px;
+            position: relative;
+            .btn{
+              width: 150px;
+              margin-right: auto;
+            }
+          }
+
+
+  .nav-tabs{
+    width: 100%;
+    .panel-title{
+      margin-left: 20px;
+      margin-top: 20px;
+    }
+  }
+  .table-responsive{
+    .table{
+      .form-check-input{
+        position:relative;
+        float:right;
+      }
+    }
+  }
+
+  .card{
+    .card-body{
+      max-height: 800px;
+      overflow-y: scroll;
+    }
+  }
+
+}

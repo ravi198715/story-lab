@@ -1,0 +1,159 @@
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#bulk-swap" aria-controls="bulk-swap" role="tab" data-toggle="tab"><h5 class="panel-title">Bulk Swap</h5></a></li>
+        <li role="presentation"><a href="#custom-swap" aria-controls="custom-swap" role="tab" data-toggle="tab"><h5 class="panel-title">Custom Swap</h5></a></li>
+      </ul>
+    </div>
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane fade show active" id="bulk-swap">
+
+        <div class="row">
+          <div class="dual-list list-left col-md-5">
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fa fa-table"></i> Users to be swapped</div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Office</th>
+                        <th>Start date</th>
+                        <th>Phone Plan</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr *ngFor="let user of userList">
+                         <td>
+                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck+{{user.id}}" (change)="cehckCheckBoxClick($event)">
+                         </td>
+                        <td [innerHtml]="user.name"></td>
+                        <td [innerHtml]="user.office"></td>
+                        <td [innerHtml]="user.start_date"></td>
+                        <td [innerHtml]="user.asset.asset_subscription">basic</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+          </div>
+          <div class="col-md-1">
+            <div class="swap-button">
+              <button type="button" class="btn btn-primary btn-sm" (click)="swapSubscription">Swap</button>
+            </div>
+
+          </div>
+
+          <div class="dual-list list-right col-md-5">
+            <div class="card mb-3">
+              <div class="card-header">
+                <i class="fa fa-table"></i> Users to be swapped with</div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Office</th>
+                        <th>Start date</th>
+                        <th>Phone Plan</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr *ngFor="let user of userList">
+                        <td>
+                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck+{{user.id}}">
+                        </td>
+                        <td [innerHtml]="user.name"></td>
+                        <td [innerHtml]="user.office"></td>
+                        <td [innerHtml]="user.start_date"></td>
+                        <td [innerHtml]="user.asset.asset_subscription">basic</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane fade" id="custom-swap">
+        <div class="row">
+          <div class=" col-md-5">
+            <h5 class="panel-title">
+              <a>Add users to first List</a>
+            </h5>
+          </div>
+          <div class="col-md-5">
+            <h5 class="panel-title">
+              <a>Add users to second List</a>
+            </h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="dual-list list-left col-md-5">
+            <div class="well text-left">
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        User subscription to Swap
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                      <ul class="list-group">
+                        <li class="list-group-item">bootstrap-duallist </li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="dual-list list-right col-md-5">
+            <div class="well text-left">
+              <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                  <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        User subscription to with
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapseOne" class="panel-collapse collapse show" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                      <ul class="list-group">
+                        <li class="list-group-item"> </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
