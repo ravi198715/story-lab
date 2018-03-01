@@ -31,8 +31,16 @@ export class UserConfigurationComponent implements OnInit {
     return body || {};
   }
 
-  cehckCheckBoxClick = (event) =>{
-    console.log(event)
+  cehckCheckBoxClick = (event,obj,arr) =>{
+      let story = this;
+    if(event.target.checked){
+        story.addtoSwappArray(obj,arr);
+        console.log(story.swapArrayOne);
+    }
+    else{
+        story.removeFromSwappArray(obj,arr);
+        console.log(story.swapArrayOne)
+    }
   }
 
   addtoSwappArray =(obj,arr)=>{
