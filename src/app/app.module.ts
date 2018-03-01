@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { MainContentComponent } from './main-content/main-content.component';
-import { FooterComponent } from './footer/footer.component';
 import { UserConfigurationComponent } from './user-configuration/user-configuration.component';
 import { UserConfigCustomComponent } from './user-config-custom/user-config-custom.component';
 
@@ -20,7 +19,7 @@ const appRoutes: Routes = [
 ];
 @NgModule({
   declarations: [
-    AppComponent, HeaderComponent, NavMenuComponent, MainContentComponent, FooterComponent, UserConfigurationComponent, UserConfigCustomComponent
+    AppComponent, HeaderComponent, NavMenuComponent, MainContentComponent, UserConfigurationComponent, UserConfigCustomComponent
   ],
   imports: [
     BrowserModule,
