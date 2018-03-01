@@ -22,9 +22,7 @@
                   [items]="userList"
                   bindLabel="name_description"
                   bindValue="$event"
-                  closeOnSelect="true"
-                  [searchable]="true"
-                  (change)="addtoSwappArray($event,swapArrayOne);selectedUser=null"
+                  (change)="addtoSwappArray($event,swapArrayOne);"
                   [(ngModel)]="selectedUser"
                   placeholder="Select User">
                  </ng-select>
@@ -38,8 +36,7 @@
                   [items]="userList"
                   bindLabel="name_description"
                   bindValue="$event"
-                  [searchable]="true"
-                  (change)="addtoSwappArray($event,swapArrayTwo);selectedUser=null"
+                  (change)="addtoSwappArray($event,swapArrayTwo);"
                   [(ngModel)]="selectedUser"
                  placeholder="Select User">
                  </ng-select>
@@ -85,6 +82,9 @@
           <div class="col-md-1">
             <div class="swap-button">
               <button type="button" class="btn btn-primary btn-sm" (click)="swapSusbscription()">Swap</button>
+            </div>
+            <div class="swap-button">
+              <button type="button" class="btn btn-primary btn-sm" (click)="reset()">Reset</button>
             </div>
 
           </div>

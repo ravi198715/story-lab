@@ -14,6 +14,7 @@ export class UserConfigCustomComponent implements OnInit {
     userListRight = [];
     swapArrayOne=[];
     swapArrayTwo=[];
+    selectedUser:any=null;
     searchLeft:any;
 
 
@@ -32,9 +33,7 @@ export class UserConfigCustomComponent implements OnInit {
         });
     }
 
-    doSomething =(data)=>{
-        console.log(data);
-    }
+
 
 
     extractData = (res) => {
@@ -68,18 +67,58 @@ export class UserConfigCustomComponent implements OnInit {
         });
     }
 
+    reset =()=>{
+        let story = this;
+        story.swapArrayOne=[];
+        story.swapArrayTwo=[];
+        story.selectedUser=null;
+    }
+
     swapSusbscription =()=>{
         let story = this;
+        let x =[];
+        let y= [];
+        let index = -1;
         if (story.swapArrayOne.length>0 && story.swapArrayTwo.length >0 && story.swapArrayOne.length == story.swapArrayTwo.length){
             story.swapArrayOne.forEach((user,i)=>{
-                [user.asset.asset_subscription, story.swapArrayTwo[i].asset.asset_subscription] =
-                [story.swapArrayTwo[i].asset.asset_subscription,user.asset.asset_subscription]
+                x.push(user.asset.asset_subscription);
+                y.push(story.swapArrayTwo[i].asset.asset_subscription);
             });
+            // [x]=[y]
+
+            story.swapArrayOne.forEach((user,i)=>{
+                user.asset.asset_subscription =y[i];
+            });
+
+            story.swapArrayTwo.forEach((user,i)=>{
+                user.asset.asset_subscription =x[i];
+            });
+
+
+            story.swapArrayOne.forEach((user,i)=>{
+            index = _.findIndex(story.userList, function(o) { return o.id == user.id });
+                if(index>=0){
+                    user.name_description=user.name+" ("+user.asset.asset_subscription+")";
+                    story.userList[index] = user;
+                }
+            });
+
+            story.swapArrayTwo.forEach((user,i)=>{
+            index = _.findIndex(story.userList, function(o) { return o.id == user.id });
+                if(index>=0){
+                    user.name_description=user.name+" ("+user.asset.asset_subscription+")";
+                    story.userList[index] = user;
+                }
+            });
+
+            story.userList=[...story.userList];
+
         }
         else{
             alert("Number of users to be swapped should be equal to users they are being swapped with");
         }
     }
+
 
     filterSwapArray =(filter,arr,flag)=>{
         let story = this;

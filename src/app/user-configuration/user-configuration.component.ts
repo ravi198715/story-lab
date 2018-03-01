@@ -70,7 +70,12 @@ export class UserConfigurationComponent implements OnInit {
             return o.id ==obj.id
         });
     }
+    reset =()=>{
+        let story = this;
+        story.swapArrayOne=[];
+        story.swapArrayTwo=[];
 
+    }
     swapSusbscription =()=>{
         let story = this;
         if (story.swapArrayOne.length>0 && story.swapArrayTwo.length >0 && story.swapArrayOne.length == story.swapArrayTwo.length){
