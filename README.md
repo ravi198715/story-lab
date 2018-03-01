@@ -5,6 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## software Requirements
 node: 6.9.4
 npm": 3.10.10
+Install angular-cli (@angular/cli": "1.2.6) using npm globally 
 
 Run npm install for downloading necessary packages for the project
 
@@ -13,8 +14,12 @@ Run `npm start` for a dev server. Navigate to `http://localhost:3200/`. The app 
 
 ## Task Info
 The tasks are done as part of two pages under manage subscriptions link.
-1.Bulk swap : This will allow users to choose more than one users to swap subscription
+1.Bulk swap : This will allow users to choose more than one users to swap subscription.
+filter can be used to select users with specific selection.
+
 Limitation: Number of users selected to swap and to be swapped with should be equal.
+The code doesn't takes into consideration the user selected on left side table still exist right hand side. 
+1st person selcted on left hand side will be swapped with 1st person on right hand side, its same for next selection.
 
 2. Custom swap: As part of custom swap people can swap subscription of two people or a 3way swap 
    eg. Haris got Jovi's Premium phone
