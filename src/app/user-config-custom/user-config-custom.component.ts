@@ -1,42 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import {Headers, Http, RequestOptions, Response} from '@angular/http';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import {Headers, Http, RequestOptions, Response} from '@angular/http';
 declare var _: any;
 @Component({
-    selector: 'app-user-configuration',
-    templateUrl: './user-configuration.component.html',
-    styleUrls: ['./user-configuration.component.scss']
+  selector: 'app-user-config-custom',
+  templateUrl: './user-config-custom.component.html',
+  styleUrls: ['./user-config-custom.component.scss']
 })
-export class UserConfigurationComponent implements OnInit {
+export class UserConfigCustomComponent implements OnInit {
 
     userList = [];
     userListLeft = [];
     userListRight = [];
     swapArrayOne=[];
     swapArrayTwo=[];
-    filterLeft:{};
-    filterRight:{};
-    subscriptionFilter: any[] = [
-        { value: null, name: "Filter By" },
-        { value: "base", name: "Base" },
-        { value: "standard", name: "Standard" },
-        { value: "premium", name: "Premium" }
-    ];
+    searchLeft:any;
 
 
-    constructor(  private http: Http,private router: Router) { }
+
+    constructor(  private http: Http,private router: Router) {
+
+     }
 
     ngOnInit() {
         let story = this;
         story.http.get("assets/data/user.json").toPromise().then((result) => {
             story.userList = story.extractData(result);
-            story.userListLeft = _.cloneDeep(story.extractData(result));
-            story.userListRight = _.cloneDeep(story.extractData(result));
+            story.userList.forEach(function(c) {
+              c["name_description"] = c.name+" ("+c.asset.asset_subscription+")";
+            });
         });
-        story.filterLeft=null;
-        story.filterRight=null;
     }
+
+    doSomething =(data)=>{
+        console.log(data);
+    }
+
+
     extractData = (res) => {
         if (res.status && res.status == 500) {
             return "Server request failed with error 500";
@@ -48,17 +48,11 @@ export class UserConfigurationComponent implements OnInit {
         return body || {};
     }
 
-    cehckCheckBoxClick = (event,obj,arr) =>{
-        let story = this;
-        if(event.target.checked){
-            story.addtoSwappArray(obj,arr);
-        }
-        else{
-            story.removeFromSwappArray(obj,arr);
-        }
-    }
 
     addtoSwappArray =(obj,arr)=>{
+        if(!obj){
+            return;
+        }
         let story = this;
         if(!_.find(arr, function(o) { return o.id ==obj.id; })){
             arr.push(obj);
@@ -66,6 +60,9 @@ export class UserConfigurationComponent implements OnInit {
     }
 
     removeFromSwappArray = (obj,arr) =>{
+        if(!obj){
+            return;
+        }
         arr = _.remove(arr, function(o) {
             return o.id ==obj.id
         });
@@ -109,4 +106,5 @@ export class UserConfigurationComponent implements OnInit {
             story.userListRight = arr
         }
     }
+
 }

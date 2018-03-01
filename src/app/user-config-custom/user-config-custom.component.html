@@ -2,22 +2,50 @@
   <div class="container-fluid">
     <div class="row">
       <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active">
-              <a href="#bulk-swap" aria-controls="bulk-swap" role="tab" data-toggle="tab" routerLink="/configure" routerLinkActive="active">
-                  <h6 class="panel-title">Bulk Swap</h6>
-              </a>
-          </li>
-          <li role="presentation">
-              <a href="#custom-swap" aria-controls="custom-swap" role="tab" data-toggle="tab" routerLink="/configure-custom" routerLinkActive="active">
-              <h6 class="panel-title">Custom Swap</h6></a>
-          </li>
-
+        <li role="presentation" class="active">
+            <a href="#bulk-swap" aria-controls="bulk-swap" role="tab" data-toggle="tab" routerLink="/configure" routerLinkActive="active">
+                <h6 class="panel-title">Bulk Swap</h6>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#custom-swap" aria-controls="custom-swap" role="tab" data-toggle="tab" routerLink="/configure-custom" routerLinkActive="active">
+            <h6 class="panel-title">Custom Swap</h6></a>
+        </li>
       </ul>
     </div>
     <!-- Tab panes -->
     <div class="tab-content">
       <div role="tabpanel" class="tab-pane fade show active" id="bulk-swap">
+        <div class="row">
+             <div class="dual-list list-left col-md-5">
+                 <ng-select class="custom"
+                  [items]="userList"
+                  bindLabel="name_description"
+                  bindValue="$event"
+                  closeOnSelect="true"
+                  [searchable]="true"
+                  (change)="addtoSwappArray($event,swapArrayOne);selectedUser=null"
+                  [(ngModel)]="selectedUser"
+                  placeholder="Select User">
+                 </ng-select>
+             </div>
+             <div class="col-md-1">
 
+
+             </div>
+             <div class="dual-list list-left col-md-5">
+                 <ng-select class="custom"
+                  [items]="userList"
+                  bindLabel="name_description"
+                  bindValue="$event"
+                  [searchable]="true"
+                  (change)="addtoSwappArray($event,swapArrayTwo);selectedUser=null"
+                  [(ngModel)]="selectedUser"
+                 placeholder="Select User">
+                 </ng-select>
+             </div>
+
+        </div>
         <div class="row">
           <div class="dual-list list-left col-md-5">
             <div class="card mb-3">
@@ -28,36 +56,30 @@
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
-                        <th></th>
                         <th>Name</th>
                         <th>Office</th>
                         <th>Start date</th>
-                        <th><span>Phone Plan</span>
-                            <select id="ddlList" [(ngModel)]="filterLeft" (change)="filterSwapArray(filterLeft,userListLeft,'left')">
-                                <option *ngFor="let filter of subscriptionFilter"
-                                [ngValue]="filter.value"
-                                >{{filter.name}}</option>
-                            </select>
-                        </th>
+                        <th><span>Phone Plan</span></th>
+                        <th>Options</th>
                       </tr>
                     </thead>
 
                     <tbody>
-                      <tr *ngFor="let user of userListLeft">
-                         <td>
-                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck{{user.id}}" (change)="cehckCheckBoxClick($event,user,swapArrayOne)">
-                         </td>
+                      <tr *ngFor="let user of swapArrayOne">
                         <td [innerHtml]="user.name"></td>
                         <td [innerHtml]="user.office"></td>
                         <td [innerHtml]="user.start_date"></td>
                         <td [innerHtml]="user.asset.asset_subscription">basic</td>
+                        <td>
+                             <i class="fa fa-fw fa-times" (click)="removeFromSwappArray(user,swapArrayOne)"></i>
+                        </td>
                       </tr>
 
                     </tbody>
                   </table>
                 </div>
               </div>
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+              <div class="card-footer small text-muted"></div>
             </div>
           </div>
           <div class="col-md-1">
@@ -76,41 +98,34 @@
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                       <tr>
-                        <th></th>
                         <th>Name</th>
                         <th>Office</th>
                         <th>Start date</th>
-                        <th><span>Phone Plan</span>
-                            <select id="ddlList" [(ngModel)]="filterRight" (change)="filterSwapArray(filterRight,userListRight,'right')">
-                                <option *ngFor="let filter of subscriptionFilter"
-                                [ngValue]="filter.value"
-                                >{{filter.name}}</option>
-                            </select>
-                        </th>
+                        <th><span>Phone Plan</span></th>
+                        <th>Options</th>
                       </tr>
                     </thead>
 
                     <tbody>
-                      <tr *ngFor="let user of userListRight">
-                        <td>
-                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck{{user.id}}" (change)="cehckCheckBoxClick($event,user,swapArrayTwo)">
-                        </td>
+                      <tr *ngFor="let user of swapArrayTwo">
                         <td [innerHtml]="user.name"></td>
                         <td [innerHtml]="user.office"></td>
                         <td [innerHtml]="user.start_date"></td>
                         <td [innerHtml]="user.asset.asset_subscription">basic</td>
+                        <td>
+                             <i class="fa fa-fw fa-times" (click)="removeFromSwappArray(user,swapArrayTwo)"></i>
+                        </td>
                       </tr>
 
                     </tbody>
                   </table>
                 </div>
               </div>
-              <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+              <div class="card-footer small text-muted"></div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </div>

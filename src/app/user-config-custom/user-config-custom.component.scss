@@ -1,0 +1,66 @@
+.container-fluid{
+  margin-top: 20px;
+  .list-group{
+    display: block;
+  }
+
+    .ng-select.custom {
+        border:1px;
+        min-height: 0px;
+        border-radius: 0;
+    }
+    .ng-select.custom .ng-control  {
+        min-height: 0px;
+        border-radius: 0;
+    }
+
+  .swap-button{
+    margin-top: 26px;
+    position: relative;
+    .btn{
+      width: 100px;
+      margin-right: auto;
+    }
+  }
+
+
+  .nav-tabs{
+    width: 100%;
+    margin-top: 10px;
+    li{
+        margin-left: 20px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border-top: 1px solid #dee2e6;
+        border-left: 1px solid #dee2e6;
+        border-right: 1px solid #dee2e6;
+        text-align: center;
+        a{
+            text-decoration: none;
+            .panel-title{
+              padding: 5px 10px 0px 10px;
+              color: #868e96;
+              text-align: center;
+            }
+        }
+    }
+
+  }
+
+  .table-responsive{
+    .table{
+      .form-check-input{
+        position:relative;
+        float:right;
+      }
+    }
+  }
+
+  .card{
+    .card-body{
+      max-height: 800px;
+      overflow-y: scroll;
+    }
+  }
+
+}
