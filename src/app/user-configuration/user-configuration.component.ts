@@ -37,6 +37,19 @@ export class UserConfigurationComponent implements OnInit {
         story.filterLeft=null;
         story.filterRight=null;
     }
+
+    reset =()=>{
+        let story = this;
+        story.swapArrayOne=[];
+        story.swapArrayTwo=[];
+        story.userListRight=null;
+        story.userListLeft=null;
+        story.userListLeft = _.cloneDeep(story.userList);
+        story.userListRight = _.cloneDeep(story.userList);
+        story.filterLeft=null;
+        story.filterRight=null;
+    }
+
     extractData = (res) => {
         if (res.status && res.status == 500) {
             return "Server request failed with error 500";
@@ -58,6 +71,10 @@ export class UserConfigurationComponent implements OnInit {
         }
     }
 
+    getSelectedUserIndex =(userId, array)=>{
+      return _.findIndex(array, function(o) { return o.id == userId; })>=0?_.findIndex(array, function(o) { return o.id == userId; })+1:"";
+    }
+
     addtoSwappArray =(obj,arr)=>{
         let story = this;
         if(!_.find(arr, function(o) { return o.id ==obj.id; })){
@@ -70,12 +87,7 @@ export class UserConfigurationComponent implements OnInit {
             return o.id ==obj.id
         });
     }
-    reset =()=>{
-        let story = this;
-        story.swapArrayOne=[];
-        story.swapArrayTwo=[];
 
-    }
     swapSusbscription =()=>{
         let story = this;
         if (story.swapArrayOne.length>0 && story.swapArrayTwo.length >0 && story.swapArrayOne.length == story.swapArrayTwo.length){

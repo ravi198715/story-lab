@@ -46,6 +46,7 @@
                       <tr *ngFor="let user of userListLeft">
                          <td>
                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck{{user.id}}" (change)="cehckCheckBoxClick($event,user,swapArrayOne)">
+                           <span [innerHtml]="getSelectedUserIndex(user.id,swapArrayOne)"></span>
                          </td>
                         <td [innerHtml]="user.name"></td>
                         <td [innerHtml]="user.office"></td>
@@ -63,6 +64,9 @@
           <div class="col-md-1">
             <div class="swap-button">
               <button type="button" class="btn btn-primary btn-sm" (click)="swapSusbscription()">Swap</button>
+            </div>
+            <div class="swap-button">
+              <button type="button" class="btn btn-primary btn-sm" (click)="reset()">Reset</button>
             </div>
 
           </div>
@@ -94,6 +98,7 @@
                       <tr *ngFor="let user of userListRight">
                         <td>
                           <input class="form-check-input" type="checkbox" value="" id="defaultCheck{{user.id}}" (change)="cehckCheckBoxClick($event,user,swapArrayTwo)">
+                          <span [innerHtml]="getSelectedUserIndex(user.id,swapArrayTwo)">  </span>
                         </td>
                         <td [innerHtml]="user.name"></td>
                         <td [innerHtml]="user.office"></td>
